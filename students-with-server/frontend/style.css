@@ -1,0 +1,250 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'EB Garamond', serif;
+}
+
+/* ***************************************** */
+/* Сбросы */
+.li-reset {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+}
+
+.link-reset {
+  text-decoration: none;
+  color: var(--main-button-link-color);
+  outline: none;
+}
+
+.p-reset {
+  margin: 0;
+}
+
+.h-reset {
+  margin: 0;
+}
+
+.btn-reset {
+  padding: 0;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+/* ***************************************** */
+/* Общие */
+:root {
+  --seacrh-background-color: #e2e8f2;
+  --seacrh-subheader-color: #328d92;
+  --search-hover-focus-color: #d2e7b8;
+  --search-active-color: #a7ba91;
+
+  --sheet-background: #fff;
+  --sheet-subheader-color: #536b69;
+}
+
+.subheader {
+  margin-bottom: 20px;
+  font-size: 40px;
+  font-weight: 700;
+  /* text-align: center; */
+  color: var(--seacrh-subheader-color);
+}
+
+/* ***************************************** */
+/* Частные стили */
+
+/* Форма поиска */
+.search {
+  padding: 20px 0;
+  background-color: #aeaeae4a;
+}
+
+.search__input {
+  padding: 10px 20px;
+  border: none;
+  outline: none;
+  width: 100%;
+  min-height: 40px;
+  border-radius: 10px;
+  font-size: 18px;
+  color: var(--seacrh-subheader-color);
+  cursor: pointer;
+  transition: background-color .3s ease-in-out;
+}
+
+.search__input:focus,
+.search__input:hover {
+  background-color: var(--search-hover-focus-color);
+}
+
+.search__input:active {
+  background-color: var(--search-active-color);
+}
+
+
+.search__input::placeholder {
+  color: var(--seacrh-subheader-color);
+}
+
+/* Таблица */
+.sheet {
+  /* margin-bottom: 100px; */
+  background-color: var(--sheet-background);
+}
+
+.sheet__rows {
+  margin-bottom: 3px;
+}
+
+.sheet__header {
+  text-align: center;
+  color: var(--sheet-subheader-color);
+}
+
+.sheet__column-header {
+  margin-bottom: 5px;
+  width: 100%;
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+  background-image: url('sort-icon.svg');
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 12px;
+}
+
+.sheet__column-header_name {
+  color: var(--sheet-subheader-color);
+  border-bottom: 1px solid var(--sheet-subheader-color);
+}
+
+.sheet__column-header_date {
+  color: #437a38;
+  border-bottom: 1px solid #437a38;
+}
+
+.sheet__column-header_start-year {
+  color: #8aa84d;
+  border-bottom: 1px solid #8aa84d;
+}
+
+.sheet__column-header_faculty {
+  color: #162e1a;
+  border-bottom: 1px solid #162e1a;
+}
+
+/* Запись в таблице */
+.sheet__item {
+  margin-left: -10px;
+  margin-right: -10px;
+  padding: 5px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.sheet__item_btnDelete {
+  padding: 0;
+  width: 110%;
+  height: 100%;
+  background-color: rgba(255, 213, 213, 0.741);
+  border: transparent;
+  transition: background-color .3s ease-in-out;
+}
+
+.sheet__item_btnDelete:focus {
+  background-color: rgb(255, 213, 213);
+}
+
+.sheet__item_btnDelete:hover {
+  background-color: rgb(255, 213, 213);
+}
+
+.sheet__item_btnDelete:active  {
+  background-color: rgb(200, 181, 181);
+}
+
+.sheet__item_name {
+  color: #536b69;
+  background-color: #556e6c43;
+}
+
+.sheet__item_date {
+  color: #437a38;
+  background-color: #437a383f;
+}
+
+.sheet__item_start-year {
+  color: #8aa84d;
+  background-color: #8aa84d44;
+}
+
+.sheet__item_faculty {
+  color: #162e1a;
+  background-color: #162e1a2c;
+}
+
+
+/* Форма для внесения студентов */
+.add-students__form {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #aeaeae4a;
+}
+
+.add-students__btn {
+  width: 100%;
+  min-height: 100%;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--seacrh-subheader-color);
+  background-color: #aeaeae4a;
+  cursor: pointer;
+  transition: background-color .3s ease-in-out;
+}
+
+.add-students__btn:focus,
+.add-students__btn:hover {
+  background-color: var(--search-hover-focus-color);
+}
+
+.add-students__btn:active {
+  background-color: var(--search-active-color);
+}
+
+.col-2 {
+  position: relative;
+}
+
+/* Окно с ошибками для формы */
+.mistakes {
+  position: absolute;
+  right: 0;
+  padding: 10px 5px 10px 25px;
+  min-width: 300px;
+  border: 2px solid #f49595;
+  border-radius: 10px;
+  background-color: #fff;
+  font-size: 20px;
+  z-index: 1000;
+}
+
+.mistakes::after {
+  content: '';
+  position: absolute;
+  right: 25%;
+  bottom: -10px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 10px 10px 0 10px;
+  border-color: #f49595 transparent transparent transparent;
+}

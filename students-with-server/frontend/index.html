@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+  <title>Список студентов</title>
+
+  <script defer src="main.js"></script>
+</head>
+
+<body>
+  <!-- Секция с поиском по фильтрам -->
+  <section class="search">
+    <div class="container">
+      <div class="row">
+        <div class="col-4">
+          <input class="search__input search__input_name" type="text" placeholder="ФИО">
+        </div>
+        <div class="col-2">
+          <input class="search__input search__input_faculty" type="text" placeholder="Факультет">
+        </div>
+        <!-- <div class="col-3">
+          <input class="search__input search__input_date" type="date" placeholder="Дата рождения">
+        </div> -->
+        <div class="col-3">
+          <input class="search__input search__input_start-year" type="number" placeholder="Год поступления">
+        </div>
+        <div class="col-3">
+          <input class="search__input search__input_end-year" type="number" placeholder="Год окончания">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Секция с таблицей -->
+  <section class="sheet">
+    <div class="container">
+      <div class="row">
+        <h2 class="h-reset subheader sheet__header">Список студентов</h2>
+      </div>
+      <div class="row sheet__main-row">
+        <div class="col-4">
+          <button class="btn-reset sheet__column-header  sheet__column-header_name">Фамилия Имя Отчество</button>
+        </div>
+        <div class="col-2">
+          <button class="btn-reset sheet__column-header  sheet__column-header_faculty">Факультет</button>
+        </div>
+        <div class="col-3">
+          <button class="btn-reset sheet__column-header  sheet__column-header_date">Дата рождения</button>
+        </div>
+        <div class="col-3">
+          <button class="btn-reset sheet__column-header  sheet__column-header_start-year">Годы обучения</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Форма добавления студентов -->
+  <section class="add-students">
+    <form class="add-students" action="#">
+      <div class="container">
+        <div class="row add-students__form">
+          <div class="col-3">
+            <input class="search__input search__input_name" type="text" placeholder="ФИО">
+          </div>
+          <div class="col-2">
+            <input class="search__input search__input_date" type="date" placeholder="Дата рождения">
+          </div>
+          <div class="col-3">
+            <input class="search__input search__input_start-year" type="number" placeholder="Год поступления">
+          </div>
+          <div class="col-2">
+            <input class="search__input search__input_faculty" type="text" placeholder="Факультет">
+          </div>
+          <div class="col-2">
+            <button class="btn-reset btn add-students__btn">Добавить</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </section>
+</body>
+
+</html>
