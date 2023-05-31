@@ -4,8 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
     { name: 'Иван', surname: 'Иванов', midName: 'Иванович', birthday: new Date(1987, 2, 15), startYear: 2022, faculty: 'ФизМат' },
     { name: 'Даниил', surname: 'Аркадьевич', midName: 'Денисов', birthday: new Date(1991, 11, 25), startYear: 2021, faculty: 'ХимБио' },
     { name: 'Сергей', surname: 'Назарбаев', midName: 'Сергеевич', birthday: new Date(1995, 1, 18), startYear: 2018, faculty: 'ГеоФак' },
-    { name: 'Анна', surname: 'Гречина', midName: 'Батьковна', birthday: new Date(1998, 11, 30), startYear: 2015, faculty: 'ФМФ' },
-    { name: 'Наталья', surname: 'Дроздова', midName: 'Валентиновна', birthday: new Date(1979, 4, 4), startYear: 2005, faculty: 'Экономический' },
   ]
 
   function getStudentItem(studentObj) {

@@ -115,7 +115,7 @@ body {
   font-size: 24px;
   font-weight: 700;
   text-align: center;
-  background-image: url('sort-icon.svg');
+  background-image: url('../icons/sort-icon.svg');
   background-repeat: no-repeat;
   background-position: left center;
   background-size: 12px;
