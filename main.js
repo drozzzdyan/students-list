@@ -1,6 +1,4 @@
-
 document.addEventListener('DOMContentLoaded', () => {
-  // Этап 2. Создайте массив объектов студентов. Добавьте в него объекты студентов, например 5 студентов.
 
   const studentsList = [
     { name: 'Иван', surname: 'Иванов', midName: 'Иванович', birthday: new Date(1987, 2, 15), startYear: 2022, faculty: 'ФизМат' },
@@ -10,11 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     { name: 'Наталья', surname: 'Дроздова', midName: 'Валентиновна', birthday: new Date(1979, 4, 4), startYear: 2005, faculty: 'Экономический' },
   ]
 
-  // Этап 3. Создайте функцию вывода одного студента в таблицу, по аналогии с тем, как вы делали вывод одного дела в модуле 8. 
-  // Функция должна вернуть html элемент с информацией и пользователе. У функции должен быть один аргумент - объект студента.
-
   function getStudentItem(studentObj) {
-    // Вычисляем сколько человеку годиков незаурядным условием
     let now = new Date();
     let age;
     if (now.getMonth() + 1 < studentObj.birthday.getMonth()) {
@@ -26,14 +20,12 @@ document.addEventListener('DOMContentLoaded', () => {
         age = now.getFullYear() - studentObj.birthday.getFullYear();
       }
     }
-    // год, года, лет в зависимости от числа
     endPhrase = 'лет'
     if (age % 10 === 2 || age % 10 === 3 || age % 10 === 4) {
       endPhrase = 'года'
     } else {
       if (age % 10 === 1) { endPhrase = 'год' }
     }
-    // Определим годы обучения и на каком курсе
     let periodsOfStudy;
     if (now.getFullYear() - studentObj.startYear > 4 || now.getMonth() > 7 && now.getFullYear() - studentObj.startYear === 4) {
       periodsOfStudy = String(studentObj.startYear) + '-' + String(studentObj.startYear + 4) + ' (закончил)';
@@ -56,16 +48,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
     }
-    // Формируем в переменные данные о студенте
     let fullName = studentObj.surname + ' ' + studentObj.name + ' ' + studentObj.midName;
     let birthday = studentObj.birthday.getDate() + '.' + studentObj.birthday.getMonth() + '.' + studentObj.birthday.getFullYear() + ' (' + String(age) + ' ' + endPhrase + ')';
-    console.log(fullName, studentObj.faculty, birthday, periodsOfStudy);
 
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // Формируем DOM элементы для студента
     let row = document.createElement('div');
     row.classList.add('row', 'sheet__rows');
-    // блок с ФИО
     let name = document.createElement('div');
     let nameInner = document.createElement('div');
     name.classList.add('col-4');
@@ -74,7 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
     name.append(nameInner);
     row.append(name);
     document.querySelector('.sheet').children[0].append(row);
-    // Факультет
     let faculty = document.createElement('div');
     let facultyInner = document.createElement('div');
     faculty.classList.add('col-2');
@@ -83,7 +69,6 @@ document.addEventListener('DOMContentLoaded', () => {
     faculty.append(facultyInner);
     row.append(faculty);
     document.querySelector('.sheet').children[0].append(row);
-    // Дата рождения
     let birthdayDOM = document.createElement('div');
     let birthdayDOMInner = document.createElement('div');
     birthdayDOM.classList.add('col-3');
@@ -92,7 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
     birthdayDOM.append(birthdayDOMInner);
     row.append(birthdayDOM);
     document.querySelector('.sheet').children[0].append(row);
-    // Годы обучения
     let study = document.createElement('div');
     let studyInner = document.createElement('div');
     study.classList.add('col-3');
@@ -103,27 +87,17 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.sheet').children[0].append(row);
   }
 
-  // Этап 4. Создайте функцию отрисовки всех студентов. Аргументом функции будет массив студентов.
-  // Функция должна использовать ранее созданную функцию создания одной записи для студента.
-  // Цикл поможет вам создать список студентов.Каждый раз при изменении списка студента вы будете вызывать эту функцию для отрисовки таблицы.
-
   function renderStudentsTable(studentsArray) {
     let sheetRows = document.querySelectorAll('.sheet__rows');
-    // Сначала сотрём
     sheetRows.forEach(element => {
       element.remove();
     });
-    // Потом отрисуем
     studentsArray.forEach(element => {
       getStudentItem(element);
     });
   }
   renderStudentsTable(studentsList);
 
-  // Этап 5. К форме добавления студента добавьте слушатель события отправки формы, в котором будет проверка введенных данных.
-  // Если проверка пройдет успешно, добавляйте объект с данными студентов в массив студентов и запустите функцию отрисовки таблицы студентов
-
-  // Функция для того, чтобы делать первую букву строки большой
   function capitalize(text) {
     return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
   }
@@ -131,11 +105,9 @@ document.addEventListener('DOMContentLoaded', () => {
   let btnForm = document.querySelector('.add-students__btn');
   btnForm.addEventListener('click', (el) => {
     el.preventDefault();
-    // Переменная о наличии ошибки и под сообщение об ошибках
     let countMistake = 0;
     let massageMistake = [];
 
-    // Нормализируем имя, а потом проверка на правильность
     let nameForm = document.querySelectorAll('.search__input_name')[1];
     let normalizeFullName = nameForm.value.trim().split(' ');
     let normalizeName = '';
@@ -167,9 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
       normalizeSurName = capitalize(normalizeFullName[0]);
       normalizeMidName = capitalize(normalizeFullName[2]);
     }
-    // console.log(normalizeFullName, massageMistake);
 
-    // Проверяем возраст
     let birthdayForm = document.querySelectorAll('.search__input_date')[0];
     let normalizeBirthday = birthdayForm.value.split('-');
     let normalizeBirthdayYear = parseInt(normalizeBirthday[0]);
@@ -190,9 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
       massageMistake.push('Дата рождения: недопустимо');
       countMistake++;
     }
-    // console.log(normalizeBirthday, massageMistake);
 
-    // Проверяем начало обучения
     let startYearForm = document.querySelectorAll('.search__input_start-year')[1];
     let normalizeStartYear = startYearForm.value.trim().split(' ');
 
@@ -204,7 +172,6 @@ document.addEventListener('DOMContentLoaded', () => {
       normalizeStartYear = parseInt(normalizeStartYear[0]);
     }
 
-    // Проверяем факультет
     let facultyForm = document.querySelectorAll('.search__input_faculty')[1];
 
     let normalizeFaculty = facultyForm.value.trim().split(' ');
@@ -219,11 +186,8 @@ document.addEventListener('DOMContentLoaded', () => {
     normalizeFaculty.forEach(element => {
       normalizeFacultyMassage += element + ' ';
     });
-    normalizeFacultyMassage = normalizeFacultyMassage.substring(0, normalizeFacultyMassage.length - 1);  // Уберем в конце пробел
-    console.log(normalizeName, normalizeSurName, normalizeMidName);
+    normalizeFacultyMassage = normalizeFacultyMassage.substring(0, normalizeFacultyMassage.length - 1);
 
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // Проверка всех ошибок, если всё ок, добавляем нового студента, если нет, то выводим ошибки
     if (countMistake === 0) {
       studentsList.push(
         {
@@ -235,17 +199,14 @@ document.addEventListener('DOMContentLoaded', () => {
           faculty: normalizeFacultyMassage,
         })
       renderStudentsTable(studentsList);
-      // Очистим поля ввода и поле с ошибками
       [nameForm.value, birthdayForm.value, startYearForm.value, facultyForm.value] = ['', '', '', ''];
       if (document.querySelector('.mistakes') !== null) {
         document.querySelector('.mistakes').remove();
       }
     } else {
-      // проверяем, есть ли элемент, если да, то стираем, апотом заново вывводим
       if (document.querySelector('.mistakes') !== null) {
         document.querySelector('.mistakes').remove();
       }
-      // Создаём окно с ошибками
       let mistakes = document.createElement('ol');
       mistakes.classList.add('mistakes');
       btnForm.parentNode.append(mistakes);
@@ -254,17 +215,14 @@ document.addEventListener('DOMContentLoaded', () => {
         li.textContent = massageMistake[i];
         mistakes.append(li);
       }
-      mistakes.style.top = String((mistakes.offsetHeight + 20) * (-1)) + 'px' // Высчитаем отсутп от элемента
+      mistakes.style.top = String((mistakes.offsetHeight + 20) * (-1)) + 'px'
 
-      // Убираем уведомление об ошибках спустя некоторое время
       let mistakeOff = setTimeout(() => {
         document.querySelector('.mistakes').remove();
         clearTimeout(mistakeOff);
       }, 1500 * countMistake);
     }
   });
-
-  // Этап 5. Создайте функцию сортировки массива студентов и добавьте события кликов на соответствующие колонки.
 
   function sortStudentsList(sortList, criterion, direction = false) {
     return sortList.sort((a, b) => {
@@ -304,22 +262,16 @@ document.addEventListener('DOMContentLoaded', () => {
     sortDirection = !sortDirection;
   });
 
-  // Этап 6. Создайте функцию фильтрации массива студентов и добавьте события для элементов формы.
-  // Будет в меру "умный" фильтр, который будет стараться искать соответствие по-максимуму
-
   function studentsFilter(filterArray, criterion, searchValue) {
     let normalizeValue;
     if (criterion === 'fullname') {
       normalizeValue = String(searchValue).trim().split(' ');
-      // Разбиваем на масиив по пробелу и удаляем все пустые элементы
       while (normalizeValue.includes('')) {
         normalizeValue.splice(normalizeValue.indexOf(''), 1);
       }
-      // Тут делаем все слова с большой буквы
       for (let i = 0; i < normalizeValue.length; i++) {
         normalizeValue[i] = capitalize(normalizeValue[i]);
       }
-      // А тут пошло поехало, будем учитывать, что пользователь может начать вводить не по порядку Ф И О
       if (normalizeValue.length > 3) {
         return [];
       }
@@ -359,7 +311,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if (criterion === 'endYear') {
       normalizeValue = parseInt(searchValue) - 4;
-      console.log(normalizeValue);
       if (normalizeValue > 2000) {
         return filterArray.filter(student => student.startYear === normalizeValue);
       } else {
